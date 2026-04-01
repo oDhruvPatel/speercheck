@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --color-main-bg: var(--main-bg);
+    --color-secondary-bg: var(--secondary-bg);
+    --color-text-primary: var(--text-primary);
+    --color-text-secondary: var(--text-secondary);
+    --color-engineer: var(--engineer);
+    --color-candidate: var(--candidate);
+    --color-overlap: var(--overlap);
+    --color-selected: var(--selected);
+    --color-disabled: var(--disabled);
+    --color-border-color: var(--border);
+    --color-hover-bg: var(--hover-bg);
+}
+
+
+/* ROOT COLORS + FONTS */
+
+:root {
+    --main-bg: #1e1e1e;
+    --secondary-bg: #212121;
+
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+
+    --engineer: #22C55E;
+    --engineer-hover: #16A34A;
+
+    --candidate: #3B82F6;
+    --candidate-hover: #2563EB;
+
+    --overlap: #A855F7;
+    --selected: #F59E0B;
+
+    --disabled: #334155;
+
+    --border: #334155;
+    --hover-bg: #273449;
+
+    /* FONTS */
+    --font-header: 'Poppins', sans-serif;
+    --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+
+/* GLOBAL STYLES */
+
+.main-bg {
+    background-color: var(--main-bg);
+}
+
+.secondary-bg {
+    background-color: var(--secondary-bg);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--main-bg);
+}
+
+/* TYPOGRAPHY */
+
+
+.font-header {
+    font-family: var(--font-header);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.font-body {
+    font-family: var(--font-body);
+}
+
+.text-primary {
+    color: var(--text-primary);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+
+/* CARD / CONTAINERS */
+
+
+.card {
+    background-color: var(--secondary-bg);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border);
+}
+
+
+/* SLOT BASE */
+
+.slot {
+    background-color: var(--disabled);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slot:hover {
+    background-color: var(--hover-bg);
+    transform: scale(1.05);
+}
+
+
+/* SLOT TYPES */
+
+
+.slot-engineer {
+    background-color: var(--engineer);
+}
+
+.slot-engineer:hover {
+    background-color: var(--engineer-hover);
+}
+
+.slot-candidate {
+    background-color: var(--candidate);
+}
+
+.slot-candidate:hover {
+    background-color: var(--candidate-hover);
+}
+
+/* Overlap (MOST IMPORTANT highlight) */
+.slot-overlap {
+    background-color: var(--overlap);
+}
+
+/* Selected slot */
+.slot-selected {
+    background-color: var(--selected);
+}
+
+/* Disabled slot */
+.slot-disabled {
+    background-color: var(--disabled);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
