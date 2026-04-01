@@ -16,7 +16,7 @@ const generateDays = () => {
         //push the day into the days array
         days.push({
             label: date.format("ddd"),
-            day: date.format("DD"),
+            day: date.format("YYYY-MM-DD"),
             today: date.isSame(dayjs(), "day")
         });
     }

@@ -2,11 +2,11 @@ import Calender from "./Calender"
 
 function Main() {
     return (
-        <div className='h-screen w-full'>
-            <div className="header bg-green-300 h-1/10 w-full">
-                asd
+        <div className='h-screen w-full flex flex-col overflow-hidden'>
+            <div className="header bg-green-300 h-16 w-full flex-shrink-0 flex items-center px-4 font-bold">
+                SpeerCheck Dashboard
             </div>
-            <div className="body bg-red-300 h-9/10 w-full">
+            <div className="flex-1 min-h-0 w-full">
                 <Calender />
             </div>
         </div>
