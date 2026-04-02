@@ -1,4 +1,5 @@
 import SpeerLogo from "@/assets/speer_logo_header.fd6ca103 (1).svg"
+import Button from "./Button"
 
 function TopBar() {
     return (
@@ -9,6 +10,7 @@ function TopBar() {
                 </div>
             </div>
             <div className="font-header text-text-primary w-full ml-5">SpeerCheck</div>
+            <div><Button /></div>
         </>
     )
 }
