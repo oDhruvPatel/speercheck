@@ -6,12 +6,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ─────────────────────────────────────────
-   THEME — single source of truth
-   All colors, fonts, radii live here.
-   In JSX use Tailwind utilities only:
-     bg-main-bg, text-primary, font-header etc.
-───────────────────────────────────────── */
+
 
 @theme {
     /* Backgrounds */

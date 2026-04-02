@@ -10,6 +10,8 @@ function TopBar() {
                 </div>
             </div>
             <div className="font-header text-text-primary w-full ml-5">SpeerCheck</div>
+
+
             <div><Button /></div>
         </>
     )

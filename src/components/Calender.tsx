@@ -1,13 +1,15 @@
-import { useState } from "react";
 import generateSlots from "../libs/getTime"
 import generateDays from "../libs/getDays";
 import { ScrollArea } from "./ui/scroll-area";
 import dayjs from "dayjs";
 import clsx from "clsx";
-import { engineers, candidates } from "./data/availability";
+import { engineers } from "./data/availability";
 import SlotCard from "./SlotCard";
+import { useCandidateStore, useConfirmStore } from "@/store/useSchedulerStore";
 
 const Calender = () => {
+    const { selectedCandidate } = useCandidateStore();
+    const { setConfirmation } = useConfirmStore();
     const slot = generateSlots();
     const days = generateDays();
     return (
@@ -45,7 +47,7 @@ const Calender = () => {
                                         eng.availability[day.day]?.includes(time)
                                     );
 
-                                    const availableCandidates = candidates.filter(cand =>
+                                    const availableCandidates = [selectedCandidate].filter(cand =>
                                         cand.availability[day.day]?.includes(time)
                                     );
 
@@ -53,10 +55,10 @@ const Calender = () => {
 
                                     return (
 
-                                        <div key={`${day.day}-${time}`} className={clsx("p-1 flex flex-row gap-0.5  border-b border-border/10 h-16 transition-colors", day.today ? "bg-today-bg/5" : "")}>
+                                        <div key={`${day.day}-${time}`} className={clsx("p-1 flex flex-row gap-0.5  border-b border-border/10 h-16 transition-colors", overlap ? "bg-overlap/20" : day.today ? "bg-today-bg/5" : "")}>
                                             {overlap ? (<>
                                                 {availableEngineers.map((eng) => {
-                                                    return <SlotCard key={eng.id} name={eng.name + " & " + availableCandidates[0].name} type="overlap" memberId={eng.id} />
+                                                    return <SlotCard key={eng.id} name={eng.name + " + " + selectedCandidate.name} type="overlap" memberId={eng.id} onClick={() => { setConfirmation({ engineer: eng, candidate: selectedCandidate, date: day.day, time: time }); }} />
                                                 })}
                                             </>) : (<>
                                                 {availableEngineers.map(eng => (
