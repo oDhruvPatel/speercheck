@@ -36,3 +36,10 @@ npm run dev
 
 **Tech:** React + TypeScript  
 **UI Libraries:** Tailwind.css, Shadcn, React-hot-toast
+
+### AI Usage
+**used Google Antigravity as IDE, not used for fully generating code/no autopilot generation of code. Inline code completion used.
+**index.css -> AI generated, I gave the color pallet, fonts and asked for making Tailwind classes of them
+**Select - Shadcn component -> AI assistance needed for overriding the default properties of the component
+**Availability.ts -> Fully AI generated generate Dummy data for Engineer and Candidate Availability
+**SVG -> All SVGs in the app has been generated using AI
