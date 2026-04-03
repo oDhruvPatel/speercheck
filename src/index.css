@@ -153,6 +153,15 @@
     }
 }
 
+[data-highlighted] {
+    background-color: rgb(255 255 255 / 0.08) !important;
+    color: #F8FAFC !important;
+}
+
+[data-highlighted] svg {
+    color: #F8FAFC !important;
+}
+
 
 
 /* 

@@ -5,11 +5,12 @@ import dayjs from "dayjs";
 import clsx from "clsx";
 import { engineers } from "./data/availability";
 import SlotCard from "./SlotCard";
-import { useCandidateStore, useConfirmStore } from "@/store/useSchedulerStore";
+import { useCandidateStore, useConfirmStore, useBookedSlotStore } from "@/store/useSchedulerStore";
 
 const Calender = () => {
     const { selectedCandidate } = useCandidateStore();
     const { setConfirmation } = useConfirmStore();
+    const { bookedSlot } = useBookedSlotStore();
     const slot = generateSlots();
     const days = generateDays();
     return (
@@ -30,11 +31,13 @@ const Calender = () => {
                 <ScrollArea className="h-full">
                     <div className="w-full grid grid-cols-[120px_1fr_1fr_1fr_1fr_1fr]">
 
-                        {/* Time slots column - 30 min slots time eg 08:00, 08:30, 09:00*/}
+                        {/* Time slots column - 30 min slots time 08:00, 08:30, 09:00*/}
                         <div className="border-r border-border/10">
                             {slot.map((time) => (
                                 <div key={time} className="h-16 flex justify-center items-start font-header text-secondary/70 text-[13px] font-bold  uppercase">
-                                    <div className="-mt-1">{time}</div>
+                                    <div className="-mt-1">
+                                        {dayjs(`1970-01-01 ${time}`).format("hh:mm A")}
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -43,6 +46,7 @@ const Calender = () => {
                         {days.map((day, idx) => (
                             <div key={idx} className="w-full first:border-t border-r border-border/10 last:border-r-0">
                                 {slot.map((time) => {
+
                                     const availableEngineers = engineers.filter(eng =>
                                         eng.availability[day.day]?.includes(time)
                                     );
@@ -53,30 +57,37 @@ const Calender = () => {
 
                                     const overlap = availableEngineers.length > 0 && availableCandidates.length > 0;
 
+                                    const isBooked = bookedSlot.some(slot => slot.date === day.day && slot.time === time && slot.candidate === selectedCandidate.id);
+
                                     return (
 
-                                        <div key={`${day.day}-${time}`} className={clsx("p-1 flex flex-row gap-0.5  border-b border-border/10 h-16 transition-colors", overlap ? "bg-overlap/20" : day.today ? "bg-today-bg/5" : "")}>
-                                            {overlap ? (<>
-                                                {availableEngineers.map((eng) => {
-                                                    return <SlotCard key={eng.id} name={eng.name + " + " + selectedCandidate.name} type="overlap" memberId={eng.id} onClick={() => { setConfirmation({ engineer: eng, candidate: selectedCandidate, date: day.day, time: time }); }} />
-                                                })}
-                                            </>) : (<>
-                                                {availableEngineers.map(eng => (
-                                                    <SlotCard key={eng.id} name={eng.name} type="engineer" memberId={eng.id} />
-                                                ))}
-                                                {availableCandidates.map(cand => (
-                                                    <SlotCard key={cand.id} name={cand.name} type="candidate" memberId={cand.id} />
-                                                ))}
-                                            </>)}
+                                        <div key={`${day.day}-${time}`} className={clsx("p-1 flex flex-row gap-0.5  border-b border-border/10 h-16 transition-colors", isBooked ? "bg-red-500/10" : overlap ? "bg-overlap/20" : day.today ? "bg-today-bg/5" : "")}>
+                                            {isBooked ? (<>
+                                                <div className="w-full h-full flex items-center justify-center">
+                                                    <span className="text-red-400/80 text-xs font-bold">Booked</span>
+                                                </div>
+                                            </>) :
+                                                (<>
+                                                    {overlap ? (<>
+                                                        {availableEngineers.map((eng) => {
+                                                            return <SlotCard key={eng.id} name={eng.name + " + " + selectedCandidate.name} type="overlap" memberId={eng.id} onClick={() => { setConfirmation({ engineer: eng, candidate: selectedCandidate, date: day.day, time: time, isOverlap: overlap, type: "overlap" }); }} />
+                                                        })}
+                                                    </>) : (<>
+                                                        {availableEngineers.map(eng => (
+                                                            <SlotCard key={eng.id} name={eng.name} type="engineer" memberId={eng.id} onClick={() => { setConfirmation({ engineer: eng, candidate: selectedCandidate, date: day.day, time: time, isOverlap: overlap, type: "engineer" }); }} />
+                                                        ))}
+                                                        {availableCandidates.map(cand => (
+                                                            <SlotCard key={cand.id} name={cand.name} type="candidate" memberId={cand.id} onClick={() => { setConfirmation({ engineer: null, candidate: selectedCandidate, date: day.day, time: time, isOverlap: overlap, type: "candidate" }); }} />
+                                                        ))}
+                                                    </>)}
+                                                </>)}
+
                                         </div>
 
                                     )
                                 })}
                             </div>
                         ))}
-
-
-
                     </div>
                 </ScrollArea>
             </div>

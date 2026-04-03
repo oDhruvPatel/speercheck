@@ -1,27 +1,43 @@
 import { candidates } from './data/availability'
 import { useCandidateStore } from '@/store/useSchedulerStore';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 function Button() {
     const { selectedCandidate, setSelectedCandidate } = useCandidateStore();
     return (
         <>
             <div className='flex flex-row h-full items-center gap-2'>
-                <div className="flex flex-row items-center gap-2 font-header text-text-primary/70"><div className='h-2 w-2 bg-red-500'></div>Candidate</div>
-                <div className="flex flex-row h-12 w-32 bg-secondary-bg border border-border/20 rounded-lg px-2">
-                    <select
-                        className="w-32 h-full bg-transparent border-none outline-none text-text-primary text-sm font-header cursor-pointer"
-                        value={selectedCandidate.id}
-                        onChange={(e) => {
-                            setSelectedCandidate(candidates.find(c => c.id === Number(e.target.value)) || candidates[0])
-                        }}
+                <Select
+                    value={String(selectedCandidate.id)}
+                    onValueChange={(val) => {
+                        setSelectedCandidate(candidates.find(c => c.id === Number(val)) || candidates[0])
+                    }}
+                >
+                    <SelectTrigger className="w-48 h-12 bg-secondary-bg border-border/20 text-text-primary text-sm font-header rounded-lg">
+                        <SelectValue />
+                    </SelectTrigger>
+
+                    <SelectContent
+                        position="popper"
+                        className="bg-secondary-bg border-border/20 w-48"
                     >
                         {candidates.map((candidate) => (
-                            <option key={candidate.id} value={candidate.id} className="w-32 text-text-primary bg-secondary-bg border">
+                            <SelectItem
+                                key={candidate.id}
+                                value={String(candidate.id)}
+                                className="text-text-primary"
+                            >
                                 {candidate.name}
-                            </option>
+                            </SelectItem>
                         ))}
-                    </select>
-                </div>
+                    </SelectContent>
+                </Select>
             </div>
         </>
     )

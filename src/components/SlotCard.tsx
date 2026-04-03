@@ -15,7 +15,7 @@ const engineerColors: Record<number, { border: string, bg: string, hover: string
     5: { border: "border-eng-blue-border/70", bg: "bg-eng-blue/80", hover: "hover:bg-eng-blue-hover/80" },
 };
 
-const candidateColor = { border: "border-cand-orange-border/70", bg: "bg-eng-orange/80", hover: "hover:bg-eng-orange-hover/80" };
+const candidateColor = { border: "border-cand-orange-border/70", bg: "bg-cand-orange/80", hover: "hover:bg-cand-orange-hover/80" };
 const overlapColor = { border: "border-overlap-border", bg: "bg-overlap", hover: "hover:bg-overlap-hover" };
 
 
