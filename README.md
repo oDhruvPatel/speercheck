@@ -1,73 +1,22 @@
-# React + TypeScript + Vite
+Design Decisions:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. UI/UX
 
-Currently, two official plugins are available:
+A. Grid-Based Calendar Layout:	A custom CSS grid was used instead of a library to maintain complete control over the calendar and premium look.
+B. Visual Role Differentiation: Different colors represents unique Engineers and Candidate, used different color for overlaping slots with ★ symbol in it to identify the overlaping clearly.
+C. Familiar UI Patterns (Google/MS Teams): interface was modeled after industry leaders like Google Calendar and Microsoft Teams. Since HR professionals use these tools daily, adopting a similar UX pattern minimizes the learning curve
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+2. Architecture
 
-## React Compiler
+A. Zustand for State Management: To ensure consisent data of selected candidates and booked slots, and Scalability
+B. Day.js for Time Handling: Standard JavaScript Date objects are difficult to format. Day.js was chosen for its powerful API for managing the 30-minute intervals and 12-hour AM/PM formatting.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+3. Getting started with the project:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. git clone https://github.com/oDhruvPatel/speercheck.git
+2. cd speercheck
+3. npm install
+4. npm run dev
+Tech: React + TypeScript
+UI Libraries: Tailwind.css, Shadcn, React-hot-toast
