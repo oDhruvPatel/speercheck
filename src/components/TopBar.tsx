@@ -23,7 +23,7 @@ function TopBar() {
         : `${firstDay.format('MMM DD')} - ${lastDay.format('MMM DD, YYYY')}`;
 
     return (
-        <div className="flex items-center justify-between w-full h-full">
+        <div className="flex items-center justify-between w-full h-full px-4">
             <div className="flex flex-row gap-10">
                 <div className="flex items-center gap-5">
                     <div className="icon h-full flex items-center">
