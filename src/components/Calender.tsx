@@ -17,7 +17,7 @@ const Calender = () => {
         <div className="flex flex-col h-[90vh] bg-secondary-bg overflow-hidden">
             {/* Days row - 5 days */}
             <div className="days grid grid-cols-[120px_1fr_1fr_1fr_1fr_1fr] items-center bg-secondary-bg flex-shrink-0">
-                <div className="text-secondary border-r border-b border-border/10 h-16 flex items-center justify-center text-[10px] font-bold uppercase tracking-widest">GMT +2</div>
+                <div className="text-secondary border-r border-b border-border/10 h-16 flex items-center justify-center text-[10px] font-bold uppercase tracking-widest">GMT +4</div>
                 {days.map((day, idx) => (
                     <div key={idx} className="w-full h-16 flex flex-col items-center justify-center border-r border-b border-border/10">
                         <div className={clsx("font-header text-[10px] tracking-widest uppercase font-bold", day.today ? "text-blue-400" : "text-secondary")}>{day.label}</div>
