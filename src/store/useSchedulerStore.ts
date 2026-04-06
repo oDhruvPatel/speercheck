@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { candidates, engineers } from "../components/data/availability";
+import { candidates, engineers } from "../data/availability";
 
 interface CandidateStore {
     selectedCandidate: typeof candidates[0];

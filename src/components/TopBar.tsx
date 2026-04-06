@@ -1,6 +1,6 @@
 import SpeerLogo from "@/assets/speer_logo_header.fd6ca103 (1).svg"
 import Button from "./Button"
-import { engineers } from "./data/availability"
+import { engineers } from "../data/availability"
 import generateDays from "../libs/getDays"
 import dayjs from "dayjs"
 import clsx from "clsx"

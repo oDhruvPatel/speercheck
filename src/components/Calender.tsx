@@ -3,7 +3,7 @@ import generateDays from "../libs/getDays";
 import { ScrollArea } from "./ui/scroll-area";
 import dayjs from "dayjs";
 import clsx from "clsx";
-import { engineers } from "./data/availability";
+import { engineers } from "../data/availability";
 import SlotCard from "./SlotCard";
 import { useCandidateStore, useConfirmStore, useBookedSlotStore } from "@/store/useSchedulerStore";
 

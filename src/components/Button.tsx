@@ -1,4 +1,4 @@
-import { candidates } from './data/availability'
+import { candidates } from '../data/availability'
 import { useCandidateStore } from '@/store/useSchedulerStore';
 import {
     Select,
