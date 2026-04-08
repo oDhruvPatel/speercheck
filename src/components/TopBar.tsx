@@ -57,6 +57,7 @@ function TopBar() {
 
             <div className="flex items-center gap-8">
                 {/* Legends for eng*/}
+                <span className='text-xs font-medium uppercase tracking-wider text-text-primary/60'>Engineers:</span>
                 <div className="flex items-center gap-4">
                     <div className="flex items-center gap-4">
                         {engineers.map(eng => (
