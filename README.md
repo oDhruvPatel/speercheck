@@ -2,7 +2,7 @@
 
 ## Design Decisions
 
-### 1. UI/UX
+### 1. UI/UX Decisions 
 
 **A. Grid-Based Calendar Layout:**
 A custom CSS grid was used instead of a library to maintain complete control over the calendar and premium look.
